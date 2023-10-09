@@ -1,0 +1,21 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[[source]]
+url = "https://download.pytorch.org/whl/cpu"
+name = "pytorch"
+
+[packages]
+langchain = "*"
+tensorflow = "*"
+torch = { version = "*", index = "pytorch" }
+python-dotenv = "*"
+openai = "*"
+streamlit = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.9"
