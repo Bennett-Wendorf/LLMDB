@@ -1,6 +1,6 @@
 import os
 import ast
-from langchain.llms.openai import OpenAI
+from langchain.chat_models import ChatOpenAI
 from langchain.prompts import PromptTemplate
 
 from llms.NonChatOpenAILangchainAgent import NonChatOpenAILangchainAgent
@@ -44,7 +44,7 @@ def test(class_name):
                 sql_agent.add_evaluation(question.id, False, class_name, question.human_answer, exception=str(e))
                 continue
 
-            response = chain.invoke({ "human_answer": question.human_answer, "llm_answer": llm_answer })
+            response = chain.invoke({ "human_answer": question.human_answer, "llm_answer": llm_answer }).content
 
             print(f"Are the answers similar: {response}")
             print()
