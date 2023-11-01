@@ -1,11 +1,14 @@
-SELECT e.EvaluationTime, q.QuestionText, e.IsSimilar, e.LLM, e.LLMAnswer, e.Exception
-FROM Question AS q
+SELECT e.LLM, q.QuestionText, CASE e.IsSimilar
+           WHEN 1 THEN 'True'
+           ELSE 'False'
+       END AS IsSimilar, e.LLMAnswer, e.EvaluationTime
+FROM Evaluation e
 JOIN (
-    SELECT QuestionID, IsSimilar, LLM, LLMAnswer, Exception, EvaluationTime
-    FROM Evaluation e1
-    WHERE e1.EvaluationTime = (
-        SELECT MAX(e2.EvaluationTime)
-        FROM Evaluation e2
-        WHERE e2.QuestionID = e1.QuestionID
-    )
-) AS e ON q.QuestionID = e.QuestionID;
+    SELECT LLM, QuestionID, MAX(EvaluationTime) AS MaxEvaluationTime
+    FROM Evaluation
+    GROUP BY LLM, QuestionID
+) recent_evaluations
+ON e.LLM = recent_evaluations.LLM
+AND e.QuestionID = recent_evaluations.QuestionID
+AND e.EvaluationTime = recent_evaluations.MaxEvaluationTime
+JOIN Question q ON e.QuestionID = q.QuestionID
