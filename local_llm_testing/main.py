@@ -16,7 +16,7 @@ from langchain.chat_models import ChatOpenAI
 import streamlit as st
 #endregion
 
-llm = ChatOpenAI(temperature=0)
+llm = OpenAI(temperature=0)
 
 db  = SQLDatabase.from_uri("sqlite:///Chinook.db")
 toolkit = SQLDatabaseToolkit(db=db, llm=llm)
@@ -25,7 +25,7 @@ agent_executor = create_sql_agent(
     llm = llm,
     toolkit = toolkit,
     verbose = True,
-    agent_type = AgentType.OPENAI_FUNCTIONS,
+    agent_type = AgentType.ZERO_SHOT_REACT_DESCRIPTION,
 )
 
 # agent_executor.run("Describe the playlist track table")

@@ -1,0 +1,1 @@
+The Chinook database used in this project is based on [this](https://github.com/lerocha/chinook-database) repository. You can create a similar database using the scripts provided there. Please also see that repository for all licensing on the project.

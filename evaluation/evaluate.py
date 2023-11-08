@@ -3,7 +3,11 @@ import ast
 from langchain.chat_models import ChatOpenAI
 from langchain.prompts import PromptTemplate
 
+from typing import List
+
 from llms.NonChatOpenAILangchainAgent import NonChatOpenAILangchainAgent
+from llms.GPT3LangchainAgent import GPT3LangchainAgent
+from llms.GPT4LangchainAgent import GPT4LangchainAgent
 
 from sql import SQL
 from sql import Question
@@ -12,7 +16,7 @@ base_class_name = "BaseLLM"
 
 directory_path = os.path.join(os.path.dirname(os.path.realpath(__file__)), "./llms")
 
-evaluator = OpenAI(temperature=0)
+evaluator = ChatOpenAI(temperature=0)
 
 prompt_template = PromptTemplate.from_template("Answer only yes or now, with no explanation or punctuation.\nDo the following two statements convey the same meaning?\n{human_answer}\n{llm_answer}")
 
@@ -62,10 +66,29 @@ def is_subclass(class_node, base_class_name):
         if isinstance(base, ast.Name)
     )
 
+def process_selection(selection: str, python_files: List[str]):
+    if selection.lower() == "all":
+        return python_files
+
+    return [file_name for i, file_name in enumerate(python_files) if str(i+1) in selection.split(" ")] 
+
 if __name__== "__main__":
     python_files = [file for file in os.listdir(directory_path) if file.endswith(".py") and file != "BaseLLM.py"]
 
-    for file in python_files:
+    print("The following LLMs are available for testing:")
+    for i, file in enumerate(python_files):
+        print(f"({i+1}) {file}")
+    selection = input("Classes to test (eg: \"1 2 3\", \"all\", \"All\"): ")
+
+    selected_files = process_selection(selection, python_files)
+
+    print()
+    print("Testing the following LLMs:")
+    for file in selected_files:
+        print(file)
+    print()
+
+    for file in selected_files:
         file_path = os.path.join(directory_path, file)
 
         with open(file_path, "r") as f:
