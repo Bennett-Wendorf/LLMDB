@@ -84,15 +84,15 @@ The complete set of questions is as follows:
 <!-- Accuracy is based on 32 question dataset -->
 | Model                     | Accuracy (% classified as correct by automated evaluator) | 
 | ------------------------- | ------------- |
-| OpenAI Divinci (1)        | 59.4% ± 13.79% (19/32) |
-| OpenAI GPT-3.5 turbo (1)  | 62.5% ± 13.57% (20/32) |
-| OpenAI GPT-4 (1)          | NOT TESTED              |
+| OpenAI Divinci            | 59.4% ± 13.79% (19/32) |
+| OpenAI GPT-3.5 turbo      | 62.5% ± 13.57% (20/32) |
+| OpenAI GPT-4              | 62.5% ± 13.57% (20/32) |
 #### Example Evaluations
 | LLM            | Question Text                                         | Similarity                                                              | LLM Answer |
 | -------------- | ----------------------------------------------------- | ----------------------------------------------------------------------- | ------------ |
 | Divinci Agent | What is the average price of a track in the database? | Similar | The average price of a track in the database is $1.05. |
 | Divinci Agent | How many customers have made repeat purchases? | Not Similar | There are 57 customers who have made repeat purchases. |
-| GPT-3.5 Agent | Can you identify the most and least expensive tracks? | Similar | The most expensive track is "Battlestar Galactica: The Story So Far" with a unit price of $1.99.The least expensive track is "For Those About To Rock (We Salute You)" with a unit price of $0.99. |
+| GPT-3.5 Agent | Can you identify the most and least expensive tracks? | Similar | The most expensive track is "Battlestar Galactica: The Story So Far" with a unit price of $1.99. The least expensive track is "For Those About To Rock (We Salute You)" with a unit price of $0.99. |
 | GPT-3.5 Agent | What are the preferred languages for track titles in the database? | Not Similar | Based on the schema of the "Track" table, there is no specific column that indicates the preferred language for track titles. |
 
 # Next Steps
