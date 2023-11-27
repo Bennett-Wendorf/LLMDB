@@ -108,11 +108,11 @@ The complete set of questions is as follows:
 | GPT-3.5 Agent | What are the preferred languages for track titles in the database? | Not Similar | Based on the schema of the "Track" table, there is no specific column that indicates the preferred language for track titles. | All the tracks are in English. |
 
 # Next Steps
-<!-- TODO: Add intro about how these are general ideas (not in order) -->
+While Langchain's SQL Agent does a relatively good job of answering questions in this manner, even the 68% accuracy of the GPT-4-turbo model is not sufficient for a production system. There are a variety of methods that could improve the system, and this section aims to outline some of those possibilities. In no particular order of importance, some of these options include further prompt engineering, fine tuning the language models, and adding additional tools or steps to the pipeline. Specifically adding additional processes for reducing ambiguity and introducing post-processing techniques for validity and consistency may help a system such as this be more production-ready.
 
 ### Prompt Engineering
-<!-- TODO: Prompt engineering is the first major next step to take for improvement -->
-
+Prompt engineering is possibly the most obvious approach to improving a text-to-SQL system like this. While significant engineering was put into Langchain's included SQL agent, further refining their choices of prompts to fit the particular combination of reasoning engine and query generator language models may improve performance. In addition, specifying prompts more specifically for the domain of the problem, or even the specific database schema may help the language models better interpret the questions that are being asked, and therefore produce better and more reliable answers. This option has the other major advantage of costing nothing in terms of training models or introducing additional computational steps, and therefore is likely the most cost-effective option. Because of this, prompt engineering is likely the first step that should be taken to improve a system like this.
+ 
 ### Fine Tuning
 <!-- TODO: Add section about why fine tuning is important -->
 <!-- TODO: cost considerations (probably only a few dollars for GPT 3.5) -->
