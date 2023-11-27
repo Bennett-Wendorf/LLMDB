@@ -114,9 +114,7 @@ While Langchain's SQL Agent does a relatively good job of answering questions in
 Prompt engineering is possibly the most obvious approach to improving a text-to-SQL system like this. While significant engineering was put into Langchain's included SQL agent, further refining their choices of prompts to fit the particular combination of reasoning engine and query generator language models may improve performance. In addition, specifying prompts more specifically for the domain of the problem, or even the specific database schema may help the language models better interpret the questions that are being asked, and therefore produce better and more reliable answers. This option has the other major advantage of costing nothing in terms of training models or introducing additional computational steps, and therefore is likely the most cost-effective option. Because of this, prompt engineering is likely the first step that should be taken to improve a system like this.
  
 ### Fine Tuning
-<!-- TODO: Add section about why fine tuning is important -->
-<!-- TODO: cost considerations (probably only a few dollars for GPT 3.5) -->
-<!-- TODO: Fine tuning generally helps the language model produce a more correct answer the first time -->
+Fine tuning is likely one of the most effective ways to improve a system like this. Tuning would allow the SQL generation model to become more proficient at that particular task as compared to a more general-purpose model like the ones by OpenAI. According to OpenAI, fine tuning a GPT model shouldn't take more than a few dozen examples, and isn't prohibitively expensive considering that the model would only need to be tuned once and then used like any other model. In general, this method requires more sample data than prompt engineering or other techniques, and therefore should only really be used if other techniques are not sufficient.
 
 ### Additional Tools/Steps
 <!-- TODO: Talk about additional steps that could be added to the agent to make it better -->
