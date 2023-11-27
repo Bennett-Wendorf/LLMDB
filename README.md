@@ -96,8 +96,7 @@ The complete set of questions is as follows:
 | OpenAI Divinci            | 59.4% (19/32) |
 | OpenAI GPT-3.5 turbo      | 62.5% (20/32) |
 | OpenAI GPT-4              | 62.5% (20/32) |
-
-<!-- TODO: run GPT-4-Turbo -->
+| OpenAI GPT-4 turbo        | 68.8% (22/32) |
 
 *Note: The accuracy values are based on the evaluator. See above for a discussion on the accuracy of the evaluator itself.*
 #### Example Evaluations

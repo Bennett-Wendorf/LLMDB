@@ -8,6 +8,7 @@ from typing import List
 from llms.NonChatOpenAILangchainAgent import NonChatOpenAILangchainAgent
 from llms.GPT3LangchainAgent import GPT3LangchainAgent
 from llms.GPT4LangchainAgent import GPT4LangchainAgent
+from llms.GPT4TurboLangchainAgent import GPT4TurboLangchainAgent
 
 from sql import SQL
 from sql import Question
