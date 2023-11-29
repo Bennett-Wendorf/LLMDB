@@ -117,13 +117,12 @@ Prompt engineering is possibly the most obvious approach to improving a text-to-
 Fine tuning is likely one of the most effective ways to improve a system like this. Tuning would allow the SQL generation model to become more proficient at that particular task as compared to a more general-purpose model like the ones by OpenAI. According to OpenAI, fine tuning a GPT model shouldn't take more than a few dozen examples, and isn't prohibitively expensive considering that the model would only need to be tuned once and then used like any other model. In general, this method requires more sample data than prompt engineering or other techniques, and therefore should only really be used if other techniques are not sufficient.
 
 ### Additional Tools/Steps
-<!-- TODO: Talk about additional steps that could be added to the agent to make it better -->
+Beyond prompt engineering and fine tuning, there are a variety of other systems that could be integrated into a text-to-SQL system to improve performance. Among other things, these systems could include additional systems for reducing ambiguity and post-processing steps to help ensure validity of generated solutions.
 
 #### Reducing Ambiguity
-<!-- TODO: Ambiguity identification steps -->
-<!-- TODO: Use a language model to first identify ambiguous questions (possibly in relation to DB schema) -->
-<!-- TODO: If identified as ambiguous, use a model to rewrite the question to be less ambiguous/take a side -->
-<!-- TODO: Give the user a warning if their question is ambiguous alongside the rewritten question to show the user how the model is interpreting their question. -->
+Ambiguity in asked questions is a major issue for text-to-SQL systems. Users cannot be relied upon to ask questions in a way that is unambiguous and easy for a language model to interpret.
+
+One possibility for combatting this problem is to pass the users' questions through a separate language model tasked with identifying ambiguity and rewriting a question to be less ambiguous. Some work on prompt engineering would have to be done to produce a subsystem that is effective at this task. To produce a system like this, the model could first be asked to identify if a question is ambiguous or not. If the question is not ambiguous, the question could be passed through to the reasoning engine and query generator as normal. If the question is ambiguous, the question could be passed through to a second language model tasked with rewriting the question to be less ambiguous. This rewritten question could then be passed through the reasoning engine and query generator as normal. Once rewritten, the rewritten question could be displayed to the user along with a warning that the question was rewritten or interpreted in the specified way. 
 
 #### Post Processing
-<!-- TODO: After the answer is generated, is there a way we can try to check if it answers the question? Is something like that even needed, or are the models alone good enough at answering the question, even if data is wrong -->
+Although not explored in this project, it is possible that post-processing steps could be added to the system to help ensure validity of the generated answers. For example, a post-processing step could be added to check if the generated answer actually is similar to the original question that was being asked. Depending on the generator and reasoning models used, a step like this might not be useful or necessary, but it is a possibility that could be explored.
